@@ -1,0 +1,155 @@
+/* Font */
+@font-face {
+    font-family: 'Matrix Small Caps';
+    src: url('fonts/MatrixSmallCapsRegular.ttf') format('truetype');
+}
+
+/* Card container */
+.card {
+    position: relative;
+    width: 320px;
+    height: 455px;
+    padding: 10px;
+    background: rgb(198, 153, 75);
+    border: 10px solid rgba(26,13,14);
+    border-radius: 10px;
+    box-sizing: border-box;
+    font-family: 'Matrix Small Caps', sans-serif;
+}
+
+/* Card header */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.card-name {
+    font-family: 'Matrix Small Caps', sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* Attribute circle */
+.card-attribute .attribute-circle {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: linear-gradient(160deg, #ffc116 10%, #260800 90%);
+    border: 1px solid gold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 24px;
+    color: rgb(255, 255, 255);
+}
+
+/* Stars container: flex row */
+.card-level .stars {
+    display: flex;             /* make row */
+    flex-direction: row;       /* explicitly row */
+    justify-content: flex-end; /* right-align stars */
+    gap: 1px;                  /* spacing between circles */
+}
+
+/* Each star in a circle */
+.star-circle {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: linear-gradient(90deg, #ffc116 5%, #ff2916 60%, #000000 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.star-circle::after {
+    content: "★";
+    position: absolute;
+    margin-top: 1px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* center the star */
+    font-size: 10px;
+
+    /* Gradient effect */
+    background: linear-gradient(70deg, #ffff00e7, #ff0000);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    /* fallback */
+    color: black;
+}
+
+
+/* Card image */
+.card-image img {
+    width: 85%;
+    border: 1px solid #a87c4c;
+    border-radius: 5px;
+    display: block;
+    margin: 5px auto;
+}
+
+/* Inside border */
+.inside-card-border {
+    border: 5px solid #a87c4c;
+    border-radius: px;
+    padding: 5px;
+    background-color: #fff;
+    margin-bottom: 5px;
+    box-sizing: border-box;
+    margin-right: 4px;
+    margin-left: 4px;
+}
+
+.card-specifics { 
+    display: flex; 
+    justify-content: space-between; 
+    font-size: 8px; 
+    color: #000000; 
+    margin-bottom: 2px; 
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+/* Type, description, stats */
+.card-type {
+    font-weight: bold;
+    font-size: 11px;
+    margin-bottom: 3px;
+}
+.card-description {
+    font-size: 9px;
+    line-height: 1.3;
+    margin-bottom: 5px;
+}
+.card-stats {
+    margin-bottom: -13px;
+    text-align: right;
+    font-weight: bold;
+    font-size: 11px;
+}
+
+/* Footer */
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    font-size: 8px;
+    font-weight: bold;
+    padding-right: 5px;
+    margin-top: 5px;
+    margin-left: -7px;
+    margin-right: 2px;
+}
+
+.true {
+    position: absolute;
+    bottom: -15px;      /* distance from top edge */
+    right: -4px;    /* distance from right edge */
+    font-size: 40px;
+    color: black; /* or any color you like */
+}
