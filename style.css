@@ -8,22 +8,32 @@
 .card {
     position: relative;
     width: 320px;
-    height: 455px;
+    height: 462px;
     padding: 10px;
-    background: rgb(198, 153, 75);
-    border: 10px solid rgba(26,13,14);
+    background: rgb(184, 149, 82);
+    border: 9px solid rgba(26,13,14);
     border-radius: 10px;
     box-sizing: border-box;
     font-family: 'Matrix Small Caps', sans-serif;
 }
 
-/* Card header */
 .card-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 5px;
+     /* Soft inner highlight + subtle shadow for bump effect */
+    box-shadow:
+        inset 0 2px 4px rgba(255, 255, 255, 1),  /* subtle top highlight */
+        inset 0 -2px 4px rgba(0, 1, 0, 1),       /* subtle bottom inner shadow */
+        0 2px 2px rgba(0, 0, 0, 0.15);            /* tiny outer shadow to lift slightly */
+
+    padding: 4px 8px;
+    font-weight: bold;
+    font-size: 14px;
+    color: #fff;
 }
+
 
 .card-name {
     font-family: 'Matrix Small Caps', sans-serif;
@@ -52,6 +62,7 @@
     flex-direction: row;       /* explicitly row */
     justify-content: flex-end; /* right-align stars */
     gap: 1px;                  /* spacing between circles */
+    margin-right: 19px;
 }
 
 /* Each star in a circle */
@@ -92,6 +103,7 @@
     border-radius: 5px;
     display: block;
     margin: 5px auto;
+    box-shadow: #000000 0px 0px 4px 2px;
 }
 
 /* Inside border */
@@ -109,11 +121,12 @@
 .card-specifics { 
     display: flex; 
     justify-content: space-between; 
-    font-size: 8px; 
+    font-size: 10px; 
     color: #000000; 
-    margin-bottom: 2px; 
+    margin-bottom: 1px; 
     margin-left: 20px;
     margin-right: 20px;
+    MArgin-top: -4px;
 }
 
 /* Type, description, stats */
@@ -151,5 +164,5 @@
     bottom: -15px;      /* distance from top edge */
     right: -4px;    /* distance from right edge */
     font-size: 40px;
-    color: black; /* or any color you like */
+    color: rgb(51, 4, 4); /* or any color you like */
 }
