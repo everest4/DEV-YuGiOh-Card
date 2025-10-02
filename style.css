@@ -1,7 +1,32 @@
-/* Font */
 @font-face {
-    font-family: 'Matrix Small Caps';
-    src: url('fonts/MatrixSmallCapsRegular.ttf') format('truetype');
+    font-family: 'MatrixSmallCaps';
+    src: url('fonts/MatrixSmallCaps-Roman.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'MatrixSmallCaps';
+    src: url('fonts/MatrixSmallCaps-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LDItalic';
+    src: url('fonts/LD Italic Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+body {
+    background: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'MatrixSmallCaps', sans-serif;
 }
 
 /* Card container */
@@ -10,18 +35,20 @@
     width: 320px;
     height: 462px;
     padding: 10px;
-    background: rgb(184, 149, 82);
-    border: 9px solid rgba(26,13,14);
+    background: rgb(237, 189, 101);
+    border: 9px solid rgb(26,13,14);
+    border-image: linear-gradient(160deg, #8a8a80, #1a1207, #e7e7db, #1a1207) 1;
     border-radius: 10px;
     box-sizing: border-box;
-    font-family: 'Matrix Small Caps', sans-serif;
+    font-family: 'MatrixSmallCaps', sans-serif;
+    z-index: 1;
 }
 
 .card-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 5px;
+    margin-bottom: 4px;
      /* Soft inner highlight + subtle shadow for bump effect */
     box-shadow:
         inset 0 2px 4px rgba(255, 255, 255, 1),  /* subtle top highlight */
@@ -36,9 +63,16 @@
 
 
 .card-name {
-    font-family: 'Matrix Small Caps', sans-serif;
+    font-family: 'MatrixSmallCaps', sans-serif;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 23px;
+    margin-top: 5px;
+    color: #000;
+}
+ 
+.card-name, 
+.card-stats {
+    font-family: 'MatrixSmallCaps', sans-serif;
 }
 
 /* Attribute circle */
@@ -53,6 +87,7 @@
     align-items: center;
     font-weight: bold;
     font-size: 24px;
+    font-family: 'MatrixSmallCaps', sans-serif;
     color: rgb(255, 255, 255);
 }
 
@@ -63,6 +98,23 @@
     justify-content: flex-end; /* right-align stars */
     gap: 1px;                  /* spacing between circles */
     margin-right: 19px;
+}
+
+.card::before{
+    content: "";
+    position: absolute;
+    top: -9px;
+    left: -9px;
+    right: -9px;
+    bottom: -9px;
+    inset: 0;
+    background: url("https://www.transparenttextures.com/patterns/nice-snow.png") repeat;
+    background-size: cover;
+
+    filter:blur(0.005px) brightness(0);
+    opacity: 0.2px;
+
+    z-index: 0;
 }
 
 /* Each star in a circle */
@@ -95,7 +147,6 @@
     color: black;
 }
 
-
 /* Card image */
 .card-image img {
     width: 85%;
@@ -104,18 +155,58 @@
     display: block;
     margin: 5px auto;
     box-shadow: #000000 0px 0px 4px 2px;
+    margin-bottom: 10px;
 }
 
 /* Inside border */
 .inside-card-border {
-    border: 5px solid #a87c4c;
-    border-radius: px;
+    border: 3px solid #e28f2f;
+    border-radius:0px;
     padding: 5px;
-    background-color: #fff;
+    background-color: rgb(240, 234, 220);
     margin-bottom: 5px;
     box-sizing: border-box;
+    box-shadow:0 0 5px rgba(0, 0, 0, 1);
     margin-right: 4px;
     margin-left: 4px;
+    margin-top: 2px;
+    
+}
+
+.inside-card-border::before,
+.inside-card-border::after,
+.inside-card-border span::before,
+.inside-card-border span::after {
+    content: "";
+    position: absolute;
+    width: 6px;  /* size of square */
+    height: 6px;
+    background: #c75d00; /* same as border or gradient */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 1);
+}
+
+/* Top-left corner */
+.inside-card-border::before {
+    top: 335px;    /* move outside border */
+    left: 13px;
+}
+
+/* Top-right corner */
+.inside-card-border::after {
+    top: 335px;
+    right: 13px;
+}
+
+/* Bottom-left corner */
+.inside-card-border span::before {
+    bottom: 13px;
+    left: 13px;
+}
+
+/* Bottom-right corner */
+.inside-card-border span::after {
+    bottom: 13px;
+    right: 13px;
 }
 
 .card-specifics { 
@@ -123,10 +214,21 @@
     justify-content: space-between; 
     font-size: 10px; 
     color: #000000; 
-    margin-bottom: 1px; 
+    margin-bottom: 5px; 
     margin-left: 20px;
     margin-right: 20px;
-    MArgin-top: -4px;
+    Margin-top: -6px;
+}
+
+.card-specifics1 { 
+    text-align: right; 
+    justify-content: space-between; 
+    font-size: 10px; 
+    color: #000000; 
+    margin-bottom: 5px; 
+    margin-left: 20px;
+    margin-right: 20px;
+    Margin-top: -11px;
 }
 
 /* Type, description, stats */
@@ -134,14 +236,21 @@
     font-weight: bold;
     font-size: 11px;
     margin-bottom: 3px;
+    font-family: 'LDItalic', italic;
 }
+
 .card-description {
     font-size: 9px;
     line-height: 1.3;
-    margin-bottom: 5px;
+    margin-bottom: 11px;
+    margin-top: -1px;
+    font-family: 'LDItalic', italic;
 }
+
 .card-stats {
-    margin-bottom: -13px;
+    border-top: 1px solid #000;
+    margin-bottom: -15px;
+    padding-bottom: 0;
     text-align: right;
     font-weight: bold;
     font-size: 11px;
@@ -151,12 +260,13 @@
 .card-footer {
     display: flex;
     justify-content: space-between;
-    font-size: 8px;
+    font-size: 7px;
     font-weight: bold;
     padding-right: 5px;
     margin-top: 5px;
     margin-left: -7px;
     margin-right: 2px;
+    font-family: 'LDItalic', italic;
 }
 
 .true {
