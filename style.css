@@ -34,7 +34,7 @@ body {
   width: 320px;
   height: 455px;
   padding: 10px;
-  background: rgb(251, 187, 69);
+  background: rgb(231, 167, 49);
   border-radius: 8px;
   overflow: visible;
   transform-style: preserve-3d;
@@ -61,7 +61,7 @@ body {
 .card-bg {
   position: absolute;
   inset: 0;
-  background: rgb(222, 154, 28);
+  background: rgb(222, 150, 18);
   filter: url(#fluffy) brightness(1.1) contrast(1.05);
   opacity: 5;
   z-index: 0;
@@ -166,7 +166,7 @@ body {
   border-radius: 0px;
   background-color: rgb(240, 234, 220);
   box-sizing: border-box;
-  box-shadow: 0 0 5px inset rgba(0, 0, 0, 1);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 1);
   margin-top: -4px;
   z-index: 2;
   position: relative;
@@ -176,11 +176,11 @@ body {
 }
 
 .middle-card-border {
-  border: 3px solid #ceaf33;
+  border: 3px solid #d37c42;
   border-radius: 0px;
   background-color: rgb(240, 234, 220);
   box-sizing: border-box;
-  box-shadow: 0 0 5px inset rgba(0, 0, 0, 1);
+  box-shadow: 0 0 5px rgb(193, 112, 13);
   padding: px;
   margin: 0;
   z-index: 3;
@@ -207,7 +207,7 @@ body {
   position: absolute;
   width: 6px;
   height: 6px;
-  background: #c75d00;
+  background: #b45515;
   box-shadow: 0 0 5px rgba(0, 0, 0, 1);
 }
 
