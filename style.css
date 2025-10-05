@@ -1,278 +1,372 @@
+/* ================================
+   FONT IMPORTS
+================================ */
 @font-face {
-    font-family: 'MatrixSmallCaps';
-    src: url('fonts/MatrixSmallCaps-Roman.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'MatrixSmallCaps';
+  src: url('fonts/MatrixSmallCaps-Roman.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'MatrixSmallCaps';
-    src: url('fonts/MatrixSmallCaps-Bold.ttf') format('truetype');
-    font-weight: bold;
-    font-style: normal;
+  font-family: 'MatrixSmallCaps';
+  src: url('fonts/MatrixSmallCaps-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'LDItalic';
-    src: url('fonts/LD Italic Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: italic;
+  font-family: 'LDItalic';
+  src: url('fonts/LD Italic Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
 }
 
+/* ================================
+   GLOBAL STYLES
+================================ */
 body {
-    background: #333;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    font-family: 'MatrixSmallCaps', sans-serif;
+  background: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  font-family: 'MatrixSmallCaps', sans-serif;
 }
 
-/* Card container */
+/* ================================
+   CARD BASE
+================================ */
 .card {
-    position: relative;
-    width: 320px;
-    height: 462px;
-    padding: 10px;
-    background: rgb(237, 189, 101);
-    border: 9px solid rgb(26,13,14);
-    border-image: linear-gradient(160deg, #8a8a80, #1a1207, #e7e7db, #1a1207) 1;
-    border-radius: 10px;
-    box-sizing: border-box;
-    font-family: 'MatrixSmallCaps', sans-serif;
-    z-index: 1;
+  position: relative;
+  width: 320px;
+  height: 455px;
+  padding: 10px;
+  background: rgb(251, 187, 69);
+  border-radius: 8px;
+  overflow: visible;
+  transform-style: preserve-3d;
+  transform-origin: center center;
+  perspective: 1000px;
+  transition: transform 0.2s ease;
 }
 
+/* Fluffy border */
+.card::before {
+  content: "";
+  position: absolute;
+  top: -9px;
+  left: -9px;
+  right: -9px;
+  bottom: -9px;
+  border: 9px solid rgb(64, 58, 58);
+  border-radius: 8px;
+  pointer-events: none;
+  box-sizing: border-box;
+  z-index: 1;
+  filter: url(#fluffy) brightness(0.5) contrast(1.3);
+}
+
+
+
+/* === BACKGROUND FILTER LAYER === */
+.card-bg {
+  position: absolute;
+  inset: 0;
+  background: rgb(222, 154, 28);
+  filter: url(#fluffy) brightness(1.1) contrast(1.05);
+  opacity: 5;
+  z-index: 0;
+  pointer-events: none;
+  background-size: 200% 200%;
+}
+
+/* Ensure visible layers stay above filters */
+.card-header,
+.card-level,
+.card-image,
+.card-specifics,
+.card-specifics1,
+.card-type,
+.card-description,
+.card-stats,
+.card-footer,
+.true {
+  position: relative;
+  z-index: 2;
+}
+
+/* ================================
+   HEADER
+================================ */
 .card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 4px;
-     /* Soft inner highlight + subtle shadow for bump effect */
-    box-shadow:
-        inset 0 2px 4px rgba(255, 255, 255, 1),  /* subtle top highlight */
-        inset 0 -2px 4px rgba(0, 1, 0, 1),       /* subtle bottom inner shadow */
-        0 2px 2px rgba(0, 0, 0, 0.15);            /* tiny outer shadow to lift slightly */
-
-    padding: 4px 8px;
-    font-weight: bold;
-    font-size: 14px;
-    color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+  padding: 4px 8px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #fff;
+  box-shadow:
+    inset 0 2px 4px rgba(255, 255, 255, 1),
+    inset 0 -2px 4px rgba(0, 1, 0, 1),
+    0 2px 2px rgba(0, 0, 0, 0.15);
 }
-
 
 .card-name {
-    font-family: 'MatrixSmallCaps', sans-serif;
-    font-weight: bold;
-    font-size: 23px;
-    margin-top: 5px;
-    color: #000;
-}
- 
-.card-name, 
-.card-stats {
-    font-family: 'MatrixSmallCaps', sans-serif;
+  font-family: 'MatrixSmallCaps', sans-serif;
+  font-weight: bold;
+  font-size: 23px;
+  margin-top: 5px;
+  color: #000;
 }
 
-/* Attribute circle */
+/* ================================
+   ATTRIBUTE + STARS
+================================ */
 .card-attribute .attribute-circle {
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    background: linear-gradient(160deg, #ffc116 10%, #260800 90%);
-    border: 1px solid gold;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-    font-size: 24px;
-    font-family: 'MatrixSmallCaps', sans-serif;
-    color: rgb(255, 255, 255);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(160deg, #ffc116 10%, #260800 90%);
+  border: 1px solid gold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 24px;
+  color: #fff;
 }
 
-/* Stars container: flex row */
 .card-level .stars {
-    display: flex;             /* make row */
-    flex-direction: row;       /* explicitly row */
-    justify-content: flex-end; /* right-align stars */
-    gap: 1px;                  /* spacing between circles */
-    margin-right: 19px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1px;
+  margin-right: 19px;
 }
 
-.card::before{
-    content: "";
-    position: absolute;
-    top: -9px;
-    left: -9px;
-    right: -9px;
-    bottom: -9px;
-    inset: 0;
-    background: url("https://www.transparenttextures.com/patterns/nice-snow.png") repeat;
-    background-size: cover;
-
-    filter:blur(0.005px) brightness(0);
-    opacity: 0.2px;
-
-    z-index: 0;
-}
-
-/* Each star in a circle */
 .star-circle {
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    background: linear-gradient(90deg, #ffc116 5%, #ff2916 60%, #000000 100%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #ffc116 5%, #ff2916 60%, #000 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
 .star-circle::after {
-    content: "★";
-    position: absolute;
-    margin-top: 1px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); /* center the star */
-    font-size: 10px;
-
-    /* Gradient effect */
-    background: linear-gradient(70deg, #ffff00e7, #ff0000);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-
-    /* fallback */
-    color: black;
+  content: "★";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 13px;
+  background: linear-gradient(70deg, #ffff00e7, #ff6600);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-/* Card image */
+/* ================================
+   IMAGE
+================================ */
 .card-image img {
-    width: 85%;
-    border: 1px solid #a87c4c;
-    border-radius: 5px;
-    display: block;
-    margin: 5px auto;
-    box-shadow: #000000 0px 0px 4px 2px;
-    margin-bottom: 10px;
+  width: 85%;
+  border: 1px solid #a87c4c;
+  border-radius: 5px;
+  display: block;
+  margin: 5px auto 10px;
+  box-shadow: 0 0 4px 2px #000;
 }
 
-/* Inside border */
+/* ================================
+   CARD BORDERS FIXED
+================================ */
+/* Outer border – dark rope base */
+.outside-card-border {
+  border: 1.5px solid #ca3131;
+  border-radius: 0px;
+  background-color: rgb(240, 234, 220);
+  box-sizing: border-box;
+  box-shadow: 0 0 5px inset rgba(0, 0, 0, 1);
+  margin-top: -4px;
+  z-index: 2;
+  position: relative;
+  margin-bottom: 10px;
+  margin-left: 3px;
+  margin-right: 3px;
+}
+
+/* Middle border – shiny green rope inside outer border */
+.middle-card-border {
+  border: 3px solid #ceaf33;
+  border-radius: 0px;
+  background-color: rgb(240, 234, 220);
+  box-sizing: border-box;
+  box-shadow: 0 0 5px inset rgba(0, 0, 0, 1);
+  padding: px;
+  margin: 0;
+  z-index: 3;
+  position: relative;
+}
+
+/* Inner border – red accent inside middle border */
 .inside-card-border {
-    border: 3px solid #e28f2f;
-    border-radius:0px;
-    padding: 5px;
-    background-color: rgb(240, 234, 220);
-    margin-bottom: 5px;
-    box-sizing: border-box;
-    box-shadow:0 0 5px rgba(0, 0, 0, 1);
-    margin-right: 4px;
-    margin-left: 4px;
-    margin-top: 2px;
-    
+  border: 1.5px solid #ca3131;
+  border-radius: 0px;
+  background-color: rgb(240, 234, 220);
+  box-sizing: border-box;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 1);
+  padding: 2px;
+  margin-top: -8;
+  position: relative;
+  z-index: 4;
 }
 
+/* Corner accents */
 .inside-card-border::before,
 .inside-card-border::after,
 .inside-card-border span::before,
 .inside-card-border span::after {
-    content: "";
-    position: absolute;
-    width: 6px;  /* size of square */
-    height: 6px;
-    background: #c75d00; /* same as border or gradient */
-    box-shadow: 0 0 5px rgba(0, 0, 0, 1);
-}
-
-/* Top-left corner */
-.inside-card-border::before {
-    top: 335px;    /* move outside border */
-    left: 13px;
-}
-
-/* Top-right corner */
-.inside-card-border::after {
-    top: 335px;
-    right: 13px;
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #c75d00;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 1);
 }
 
 /* Bottom-left corner */
-.inside-card-border span::before {
-    bottom: 13px;
-    left: 13px;
+.inside-card-border::before {
+    top: 77px;    /* move outside border */
+    left: -6px;
 }
 
 /* Bottom-right corner */
-.inside-card-border span::after {
-    bottom: 13px;
-    right: 13px;
+.inside-card-border::after {
+    top: 77px;
+    right: -6px;
 }
 
+/* Top-left corner */
+.inside-card-border span::before {
+    top: -6px;
+    left: -6px;
+}
+
+/* Top-right corner */
+.inside-card-border span::after {
+    top: -6px;
+    right: -6px;
+}
+
+/* ================================
+   CARD TEXT SECTIONS
+================================ */
 .card-specifics { 
-    display: flex; 
-    justify-content: space-between; 
-    font-size: 10px; 
-    color: #000000; 
-    margin-bottom: 5px; 
-    margin-left: 20px;
-    margin-right: 20px;
-    Margin-top: -6px;
+  display: flex;   
+  font-size: 10px;
+  color: #000;
+  margin-bottom: 10px;
+  justify-content: space-between; 
+  margin-top: -3px; 
+  margin-left: 18px;
 }
 
 .card-specifics1 { 
-    text-align: right; 
-    justify-content: space-between; 
-    font-size: 10px; 
-    color: #000000; 
-    margin-bottom: 5px; 
-    margin-left: 20px;
-    margin-right: 20px;
-    Margin-top: -11px;
+  text-align: right;   
+  font-size: 10px;
+  color: #000;
+  margin-bottom: 10px;
+  margin-top: -15px; 
+  margin-right: 18px;
 }
 
-/* Type, description, stats */
 .card-type {
-    font-weight: bold;
-    font-size: 11px;
-    margin-bottom: 3px;
-    font-family: 'LDItalic', italic;
+  font-weight: bold;
+  font-size: 11px;
+  margin-bottom: 3px;
+  font-family: 'LDItalic', italic;
 }
 
 .card-description {
-    font-size: 9px;
-    line-height: 1.3;
-    margin-bottom: 11px;
-    margin-top: -1px;
-    font-family: 'LDItalic', italic;
+  font-size: 9px;
+  line-height: 1.3;
+  margin-bottom: 10px;
+  font-family: 'LDItalic', italic;
 }
 
 .card-stats {
-    border-top: 1px solid #000;
-    margin-bottom: -15px;
-    padding-bottom: 0;
-    text-align: right;
-    font-weight: bold;
-    font-size: 11px;
+  border-top: 1px solid #000;
+  text-align: right;
+  font-weight: bold;
+  font-size: 11px;
+  padding: 3px;
 }
 
-/* Footer */
+/* ================================
+   FOOTER + SYMBOL
+================================ */
 .card-footer {
-    display: flex;
-    justify-content: space-between;
-    font-size: 7px;
-    font-weight: bold;
-    padding-right: 5px;
-    margin-top: 5px;
-    margin-left: -7px;
-    margin-right: 2px;
-    font-family: 'LDItalic', italic;
+  display: flex;
+  justify-content: space-between;
+  font-size: 7px;
+  font-weight: bold;
+  margin-left: -8px;
+  margin-right: 8px;
+  font-family: 'LDItalic', italic;
+  margin-top: -6px;
 }
 
 .true {
-    position: absolute;
-    bottom: -15px;      /* distance from top edge */
-    right: -4px;    /* distance from right edge */
-    font-size: 40px;
-    color: rgb(51, 4, 4); /* or any color you like */
+  position: relative;
+  bottom: 32px;
+  left: 312px;
+  font-size: 40px;
+  color: rgb(51, 4, 4);
+}
+
+/* ================================
+   HOLOGRAPHIC SHINE EFFECT
+================================ */
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+      circle at var(--shine-x, 50%) var(--shine-y, 50%),
+      rgba(255, 255, 255, 0.8) 0%,
+      rgba(255, 255, 255, 0.2) 20%,
+      rgba(0, 0, 0, 0.05) 80%
+    ),
+    conic-gradient(from 0deg, #ff00ff, #00ffff, #ffff00, #ff00ff);
+  mix-blend-mode: overlay;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.card.shine-active::after {
+  opacity: 0.8;
+  animation: holoRotate 6s linear infinite;
+}
+
+/* ================================
+   ANIMATIONS
+================================ */
+@keyframes holoRotate {
+  0% { filter: hue-rotate(0deg) brightness(1); }
+  50% { filter: hue-rotate(180deg) brightness(1.3); }
+  100% { filter: hue-rotate(360deg) brightness(1); }
+}
+
+@keyframes sparkleMove {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 100%; }
+  100% { background-position: 0% 0%; }
 }
