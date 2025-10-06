@@ -32,7 +32,7 @@ body {
 .card {
   position: relative;
   width: 320px;
-  height: 455px;
+  height: 460px;
   padding: 10px;
   background: rgb(231, 167, 49);
   border-radius: 8px;
@@ -327,10 +327,4 @@ body {
   0% { filter: hue-rotate(0deg) brightness(1); }
   50% { filter: hue-rotate(180deg) brightness(1.3); }
   100% { filter: hue-rotate(360deg) brightness(1); }
-}
-
-@keyframes sparkleMove {
-  0% { background-position: 0% 0%; }
-  50% { background-position: 100% 100%; }
-  100% { background-position: 0% 0%; }
 }
