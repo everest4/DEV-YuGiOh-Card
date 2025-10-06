@@ -106,19 +106,27 @@ body {
   color: #000;
 }
 
-/* Stars */
+/* Element */
 .card-attribute .attribute-circle {
-  width: 28px;
-  height: 28px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   background: linear-gradient(160deg, #ffc116 10%, #260800 90%);
-  border: 1px solid gold;
+  border: 2px solid rgb(255, 234, 0);
   display: flex;
   justify-content: center;
   align-items: center;
   font-weight: bold;
-  font-size: 24px;
+  font-size: 20px;
   color: #fff;
+  align-items: end;
+}
+
+.card-attribute .attribute-index {
+  position: relative;
+  margin-bottom: -10px;
+  font-size: 10px;
+  margin-left: 6px;
 }
 
 .card-level .stars {
@@ -211,18 +219,6 @@ body {
   box-shadow: 0 0 5px rgba(0, 0, 0, 1);
 }
 
-/* Bottom-left */
-.inside-card-border::before {
-    top: 83px;    
-    left: -4px;
-}
-
-/* Bottom-right */
-.inside-card-border::after {
-    top: 83px;
-    right: -4px;
-}
-
 /* Top-left */
 .inside-card-border span::before {
     top: -5px;
@@ -232,6 +228,18 @@ body {
 /* Top-right */
 .inside-card-border span::after {
     top: -5px;
+    right: -4px;
+}
+
+/* Bottom-left */
+.inside-card-border::before {
+    top: 83px;    
+    left: -4px;
+}
+
+/* Bottom-right */
+.inside-card-border::after {
+    top: 83px;
     right: -4px;
 }
 
